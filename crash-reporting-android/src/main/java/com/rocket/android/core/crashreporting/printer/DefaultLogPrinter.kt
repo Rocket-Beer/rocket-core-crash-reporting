@@ -3,7 +3,7 @@ package com.rocket.android.core.crashreporting.printer
 import android.util.Log
 import com.rocket.core.crashreporting.logger.LogLevel
 
-class DefaultLogPrinter: LogPrinter {
+class DefaultLogPrinter : LogPrinter {
     override
     fun printMessage(tag: String, msg: String, logLevel: LogLevel) {
         when (logLevel) {

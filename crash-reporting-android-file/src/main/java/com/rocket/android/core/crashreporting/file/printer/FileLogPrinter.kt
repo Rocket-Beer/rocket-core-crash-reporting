@@ -2,27 +2,27 @@ package com.rocket.android.core.crashreporting.file.printer
 
 import android.app.Application
 import android.os.Environment
+import android.util.Log
 import com.rocket.android.core.crashreporting.printer.LogPrinter
 import com.rocket.core.crashreporting.logger.LogLevel
 import java.io.File
 import java.io.FileOutputStream
-import java.io.FileWriter
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class FileLogPrinter(private val application: Application) : LogPrinter {
-    private val FILE_NAME: String
-    private val FILE_PATH: String
+    private val logFileName: String
+    private val logFilePath: String
 
     init {
         val packageName = application.applicationContext.packageName
-        FILE_PATH = "$packageName-Rocket_logs"
+        logFilePath = "$packageName-Rocket_logs"
 
         val currentDate: String =
             SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
-        FILE_NAME = "$currentDate.log"
+        logFileName = "$currentDate.log"
     }
 
     override
@@ -36,7 +36,7 @@ class FileLogPrinter(private val application: Application) : LogPrinter {
 
     private fun writeToFile(message: String) {
         try {
-            val file = getLogFile(FILE_PATH, FILE_NAME)
+            val file = getLogFile(logFilePath, logFileName)
             with(FileOutputStream(file, true)) {
                 write(message.toByteArray())
                 write("\n".toByteArray())
@@ -44,7 +44,7 @@ class FileLogPrinter(private val application: Application) : LogPrinter {
                 close()
             }
         } catch (e: IOException) {
-            e.printStackTrace()
+            Log.e("FileLogPrinter", e.stackTrace.toString())
         }
     }
 
@@ -66,10 +66,4 @@ class FileLogPrinter(private val application: Application) : LogPrinter {
 
         return dir
     }
-
-    private fun isExternalStorageReadOnly(): Boolean =
-        Environment.MEDIA_MOUNTED_READ_ONLY == Environment.getExternalStorageState()
-
-    private fun isExternalStorageAvailable(): Boolean =
-        Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
 }
