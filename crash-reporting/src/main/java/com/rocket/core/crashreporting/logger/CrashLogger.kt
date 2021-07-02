@@ -10,6 +10,6 @@ interface CrashLogger {
     fun log(
         message: String,
         map: Map<String, String?> = emptyMap(),
-        logLevel: LogLevel = LogLevel.ERROR
+        logLevel: LogLevel = LogLevel.DEBUG
     )
 }
