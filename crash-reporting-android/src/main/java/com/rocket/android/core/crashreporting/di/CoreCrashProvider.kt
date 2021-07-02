@@ -26,6 +26,5 @@ class CoreCrashProvider private constructor(private val context: Context) {
                     _instance
                 }
             }
-
     }
 }
