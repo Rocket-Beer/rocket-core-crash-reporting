@@ -3,16 +3,25 @@ package com.rocket.android.core.crashreporting.file.printer
 import android.app.Application
 import android.os.Environment
 import android.util.Log
-import com.rocket.android.core.crashreporting.printer.LogPrinter
+import com.rocket.android.core.crashreporting.file.appendLn
+import com.rocket.android.core.crashreporting.file.createFileIfNotExists
+import com.rocket.android.core.crashreporting.file.createPathIfNotExists
 import com.rocket.core.crashreporting.logger.LogLevel
+import com.rocket.core.crashreporting.printer.LogPrinter
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlinx.coroutines.*
 
-class FileLogPrinter(private val application: Application) : LogPrinter {
+internal const val currentDateFormat: String = "yyyy-MM-dd"
+internal const val currentDateTimeFormat: String = "yyyy-MM-dd HH:mm.sss"
+
+class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) : LogPrinter {
+    private var scope =
+        CoroutineScope(dispatcher + SupervisorJob())
+
     private val logFileName: String
     private val logFilePath: String
 
@@ -20,28 +29,26 @@ class FileLogPrinter(private val application: Application) : LogPrinter {
         val packageName = application.applicationContext.packageName
         logFilePath = "$packageName-Rocket_logs"
 
-        val currentDate: String =
-            SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())
+        val currentDate = SimpleDateFormat(currentDateFormat, Locale.getDefault()).format(Date())
         logFileName = "$currentDate.log"
     }
 
     override
     fun printMessage(tag: String, msg: String, logLevel: LogLevel) {
-        val currentDateTime: String =
-            SimpleDateFormat("yyyy-MM-dd HH:mm.sss", Locale.getDefault()).format(Date())
+        val message = "$logLevel/$tag: $msg"
 
-        val message = "$currentDateTime $logLevel/$tag: $msg"
-        writeToFile(message)
+        scope.launch {
+            writeToFile(message)
+        }
     }
 
-    private fun writeToFile(message: String) {
+     private fun writeToFile(message: String) {
         try {
-            val file = getLogFile(logFilePath, logFileName)
-            with(FileOutputStream(file, true)) {
-                write(message.toByteArray())
-                write("\n".toByteArray())
-                flush()
-                close()
+            val currentDateTime: String =
+                SimpleDateFormat(currentDateTimeFormat, Locale.getDefault()).format(Date())
+
+            getLogFile(logFilePath, logFileName).apply {
+                appendLn("$currentDateTime $message")
             }
         } catch (e: IOException) {
             Log.e("FileLogPrinter", e.stackTrace.toString())
@@ -50,20 +57,16 @@ class FileLogPrinter(private val application: Application) : LogPrinter {
 
     private fun getLogFile(path: String, filename: String): File {
         val dir = getDocumentsDirectory(path)
-        val file = File("${dir.absolutePath}/$filename")
-
-        if (!file.exists()) file.createNewFile()
-
-        return file
+        return File("${dir.absolutePath}/$filename").apply {
+            createFileIfNotExists()
+        }
     }
 
     private fun getDocumentsDirectory(path: String): File {
-        val dir = File(
+        return File(
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), path
-        )
-
-        if (!dir.exists()) dir.mkdirs()
-
-        return dir
+        ).apply {
+            createPathIfNotExists()
+        }
     }
 }
