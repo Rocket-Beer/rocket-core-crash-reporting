@@ -6,20 +6,26 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class DefaultLogPrinterTest {
-    private lateinit var defaultLogPrinter: DefaultLogPrinter
+internal class AndroidLogPrinterTest {
+    private lateinit var androidLogPrinter: AndroidLogPrinter
+
+    @BeforeEach
+    fun setup() {
+        mockkStatic(Log::class)
+
+        androidLogPrinter = AndroidLogPrinter()
+    }
 
     @Test
     fun `defaultLogPrinter with DEBUG logs debug`() {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.DEBUG
-        defaultLogPrinter = DefaultLogPrinter()
 
-        mockkStatic(Log::class)
-        defaultLogPrinter.printMessage(tag, msg, logLevel)
+        androidLogPrinter.printMessage(tag, msg, logLevel)
 
         every { Log.d(any(), any()) } returns mockk()
 
@@ -33,10 +39,8 @@ internal class DefaultLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.INFO
-        defaultLogPrinter = DefaultLogPrinter()
 
-        mockkStatic(Log::class)
-        defaultLogPrinter.printMessage(tag, msg, logLevel)
+        androidLogPrinter.printMessage(tag, msg, logLevel)
 
         every { Log.i(any(), any()) } returns mockk()
 
@@ -50,10 +54,8 @@ internal class DefaultLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.WARN
-        defaultLogPrinter = DefaultLogPrinter()
 
-        mockkStatic(Log::class)
-        defaultLogPrinter.printMessage(tag, msg, logLevel)
+        androidLogPrinter.printMessage(tag, msg, logLevel)
 
         every { Log.w(any(), any<String>()) } returns mockk()
 
@@ -67,10 +69,8 @@ internal class DefaultLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.ERROR
-        defaultLogPrinter = DefaultLogPrinter()
 
-        mockkStatic(Log::class)
-        defaultLogPrinter.printMessage(tag, msg, logLevel)
+        androidLogPrinter.printMessage(tag, msg, logLevel)
 
         every { Log.e(any(), any()) } returns mockk()
 
