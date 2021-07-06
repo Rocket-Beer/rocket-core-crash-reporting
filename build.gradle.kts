@@ -31,11 +31,6 @@ subprojects {
     repositories {
         mavenCentral()
     }
-
-    // Optionally configure plugin
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        debug.set(true)
-    }
 }
 
 tasks.register("clean", Delete::class) {

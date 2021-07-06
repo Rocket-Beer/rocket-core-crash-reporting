@@ -1,5 +1,7 @@
 package com.rocket.android.core.crashreporting.file.printer
 
+import LogFormat.currentDateFormat
+import LogFormat.currentDateTimeFormat
 import android.app.Application
 import android.os.Environment
 import android.util.Log
@@ -8,11 +10,10 @@ import com.rocket.android.core.crashreporting.file.createFileIfNotExists
 import com.rocket.android.core.crashreporting.file.createPathIfNotExists
 import com.rocket.core.crashreporting.logger.LogLevel
 import com.rocket.core.crashreporting.printer.LogPrinter
-import currentDateFormat
-import currentDateTimeFormat
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
