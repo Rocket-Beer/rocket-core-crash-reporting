@@ -8,15 +8,14 @@ import com.rocket.android.core.crashreporting.file.createFileIfNotExists
 import com.rocket.android.core.crashreporting.file.createPathIfNotExists
 import com.rocket.core.crashreporting.logger.LogLevel
 import com.rocket.core.crashreporting.printer.LogPrinter
+import currentDateFormat
+import currentDateTimeFormat
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlinx.coroutines.*
-
-internal const val currentDateFormat: String = "yyyy-MM-dd"
-internal const val currentDateTimeFormat: String = "yyyy-MM-dd HH:mm.sss"
 
 class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) : LogPrinter {
     private var scope =
