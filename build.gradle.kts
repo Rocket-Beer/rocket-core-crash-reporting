@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 buildscript {
     repositories {
         maven("https://plugins.gradle.org/m2/")
@@ -30,6 +32,13 @@ subprojects {
 
     repositories {
         mavenCentral()
+        maven {
+            url = uri("https://maven.pkg.github.com/Rocket-Beer/rocket-core-crash-reporting")
+            credentials {
+                username = gradleLocalProperties(rootDir).getProperty("github.username")
+                password = gradleLocalProperties(rootDir).getProperty("github.password")
+            }
+        }
     }
 }
 
