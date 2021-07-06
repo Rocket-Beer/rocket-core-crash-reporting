@@ -1,6 +1,5 @@
 plugins {
     id("java-library")
-    kotlin("android")
 }
 
 java {
@@ -13,5 +12,5 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.0.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.2.60")
-    testImplementation("io.mockk:mockk:1.10.2")
+    testImplementation("io.mockk:mockk:1.12.0")
 }

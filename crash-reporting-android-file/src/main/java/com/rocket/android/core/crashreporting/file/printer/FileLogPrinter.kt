@@ -10,12 +10,14 @@ import com.rocket.core.crashreporting.logger.LogLevel
 import com.rocket.core.crashreporting.printer.LogPrinter
 import currentDateFormat
 import currentDateTimeFormat
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import kotlinx.coroutines.*
 
 class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) : LogPrinter {
     private var scope =
@@ -41,7 +43,7 @@ class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) 
         }
     }
 
-     private fun writeToFile(message: String) {
+    private fun writeToFile(message: String) {
         try {
             val currentDateTime: String =
                 SimpleDateFormat(currentDateTimeFormat, Locale.getDefault()).format(Date())
