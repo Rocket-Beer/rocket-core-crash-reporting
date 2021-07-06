@@ -1,6 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
+    id("kotlin")
     id("java-library")
     id("maven-publish")
 }
@@ -21,7 +22,7 @@ dependencies {
 publishing {
     repositories {
         maven {
-            name = "Rocket-Core_crash-reporting"
+            name = "rocket-core-crash-reporting"
             url = uri("https://maven.pkg.github.com/Rocket-Beer/rocket-core-crash-reporting")
             credentials {
                 username = gradleLocalProperties(rootDir).getProperty("github.username")

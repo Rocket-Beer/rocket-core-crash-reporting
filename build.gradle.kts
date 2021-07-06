@@ -1,6 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 buildscript {
+    val kotlin_version by extra("1.5.10")
     repositories {
         maven("https://plugins.gradle.org/m2/")
         google()

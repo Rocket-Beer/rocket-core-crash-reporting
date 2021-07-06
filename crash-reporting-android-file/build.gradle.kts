@@ -46,7 +46,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
     implementation(project(path = ":crash-reporting-android"))
-    implementation(project(path = ":crash-reporting"))
+    implementation("com.rocket.core:crash-reporting:0.0.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.0.1")
@@ -60,7 +60,7 @@ dependencies {
 publishing {
     repositories {
         maven {
-            name = "Rocket-Core_crash-reporting"
+            name = "rocket-core-crash-reporting"
             url = uri("https://maven.pkg.github.com/Rocket-Beer/rocket-core-crash-reporting")
             credentials {
                 username = gradleLocalProperties(rootDir).getProperty("github.username")
