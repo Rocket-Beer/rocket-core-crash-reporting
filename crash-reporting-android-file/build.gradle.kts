@@ -45,7 +45,7 @@ dependencies {
     implementation("com.google.android.material:material:1.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
-    implementation(project(path = ":crash-reporting-android"))
+    implementation("com.rocket.android.core:crash-reporting-android:0.0.1")
     implementation("com.rocket.core:crash-reporting:0.0.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
