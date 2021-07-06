@@ -68,7 +68,7 @@ publishing {
                 groupId = "com.rocket.android.core"
                 artifactId = "crash-reporting-android"
                 version = "0.0.1"
-                artifact("$buildDir/outputs/aar/$artifactId.aar")
+                artifact("$buildDir/outputs/aar/$artifactId-debug.aar")
             }
         }
     }
