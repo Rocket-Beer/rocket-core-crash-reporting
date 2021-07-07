@@ -48,8 +48,7 @@ dependencies {
     implementation("com.google.android.material:material:1.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
 
-    implementation("com.rocket.android.core:crash-reporting-android:0.0.1")
-    implementation("com.rocket.core:crash-reporting:0.0.1")
+    implementation("com.rocket.android.core:crash-reporting-android:0.0.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.1.3")
@@ -77,7 +76,7 @@ publishing {
             run {
                 groupId = "com.rocket.android.core"
                 artifactId = "crash-reporting-android-file"
-                version = "0.0.1"
+                version = "0.0.2"
                 artifact("$buildDir/outputs/aar/$artifactId-debug.aar")
             }
         }
