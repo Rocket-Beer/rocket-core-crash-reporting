@@ -1,7 +1,6 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 buildscript {
-    val kotlin_version by extra("1.5.10")
     repositories {
         maven("https://plugins.gradle.org/m2/")
         google()
@@ -12,8 +11,6 @@ buildscript {
         classpath(kotlin("gradle-plugin", version = "1.5.10"))
         classpath("org.jlleitschuh.gradle:ktlint-gradle:10.1.0")
         classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.17.1")
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 

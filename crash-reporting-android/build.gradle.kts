@@ -39,14 +39,14 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
     implementation("androidx.core:core-ktx:1.6.0")
 
     implementation("com.rocket.core:crash-reporting:0.0.1")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
-    testImplementation("com.google.truth:truth:1.0.1")
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.2.60")
+    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.5.20")
     testImplementation("io.mockk:mockk:1.12.0")
 }
 
