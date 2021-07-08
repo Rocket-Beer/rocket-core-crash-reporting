@@ -1,9 +1,6 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("maven-publish")
 }
 
 android {
@@ -48,6 +45,7 @@ dependencies {
     implementation("com.google.android.material:material:1.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
 
+    implementation("com.rocket.core:crash-reporting:0.0.2")
     implementation("com.rocket.android.core:crash-reporting-android:0.0.2")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
@@ -57,28 +55,4 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "rocket-core-crash-reporting"
-            url = uri("https://maven.pkg.github.com/Rocket-Beer/rocket-core-crash-reporting")
-            credentials {
-                username = gradleLocalProperties(rootDir).getProperty("github.username")
-                password = gradleLocalProperties(rootDir).getProperty("github.password")
-            }
-        }
-    }
-
-    publications {
-        create<MavenPublication>("gpr") {
-            run {
-                groupId = "com.rocket.android.core"
-                artifactId = "crash-reporting-android-file"
-                version = "0.0.2"
-                artifact("$buildDir/outputs/aar/$artifactId-debug.aar")
-            }
-        }
-    }
 }

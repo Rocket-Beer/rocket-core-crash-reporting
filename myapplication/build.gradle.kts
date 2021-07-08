@@ -42,8 +42,6 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
     implementation(project(path = ":crash-reporting-android-file"))
-    implementation(project(path = ":crash-reporting-android"))
-    implementation(project(path = ":crash-reporting"))
 
     testImplementation("junit:junit:4.+")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
