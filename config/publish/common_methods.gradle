@@ -73,7 +73,7 @@ ext {
     }
 
     getPublisherPassword = { project ->
-        println("***MAAAP")
+        println("**MAAAP")
         System.getenv().each { key, value ->
             println "Name: $key Age: $value"
         }
