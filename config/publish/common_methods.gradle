@@ -11,7 +11,7 @@ ext {
     def LOCAL_PUBLISHER_USERNAME = "github.username"
     def LOCAL_PUBLISHER_TOKEN = "github.token"
     def GITHUB_ACTIONS_PUBLISHER_ACTOR = "GITHUB_ACTOR"
-    def GITHUB_ACTIONS_PUBLISHER_TOKEN = "GITHUB_TOKEN"
+    def GITHUB_ACTIONS_PUBLISHER_PASSWORD = "GITHUB_PASSWORD"
 
     getPublisherProperties = { projectDir ->
         Properties properties = new Properties()
@@ -70,12 +70,12 @@ ext {
 
     getPublisherUsername = { project ->
         def username = getLocalProperty(project, LOCAL_PUBLISHER_USERNAME) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_ACTOR)
-        println("$project $LOCAL_PUBLISHER_TOKEN -> username = $username")
+        println("$project $LOCAL_PUBLISHER_USERNAME -> username = $username")
         return username
     }
 
     getPublisherPassword = { project ->
-        def password = getLocalProperty(project, LOCAL_PUBLISHER_TOKEN) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_TOKEN)
+        def password = getLocalProperty(project, LOCAL_PUBLISHER_TOKEN) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_PASSWORD)
         println("$project $LOCAL_PUBLISHER_TOKEN -> password = $password")
         return password
     }
