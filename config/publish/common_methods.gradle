@@ -69,10 +69,14 @@ ext {
     }
 
     getPublisherUsername = { project ->
-        return getLocalProperty(project, LOCAL_PUBLISHER_USERNAME) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_ACTOR)
+        def username = getLocalProperty(project, LOCAL_PUBLISHER_USERNAME) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_ACTOR)
+        println("$project $LOCAL_PUBLISHER_TOKEN -> username = $username")
+        return username
     }
 
     getPublisherPassword = { project ->
-        return getLocalProperty(project, LOCAL_PUBLISHER_TOKEN) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_TOKEN)
+        def password = getLocalProperty(project, LOCAL_PUBLISHER_TOKEN) ?: System.getenv(GITHUB_ACTIONS_PUBLISHER_TOKEN)
+        println("$project $LOCAL_PUBLISHER_TOKEN -> password = $password")
+        return password
     }
 }
