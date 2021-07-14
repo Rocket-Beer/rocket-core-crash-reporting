@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 class CoreAndroidFileCrashProvider private constructor(private val application: Application) :
     CoreProvider() {
 
-    val fileDispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val fileDispatcher: CoroutineDispatcher = Dispatchers.IO
 
     val logPrinter: LogPrinter by lazy {
         FileLogPrinter(application, fileDispatcher)
