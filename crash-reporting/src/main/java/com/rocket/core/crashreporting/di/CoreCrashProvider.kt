@@ -3,20 +3,24 @@ package com.rocket.core.crashreporting.di
 import com.rocket.core.crashreporting.logger.CrashLogger
 import com.rocket.core.crashreporting.logger.DefaultLogger
 import com.rocket.core.crashreporting.printer.DefaultLogPrinter
+import com.rocket.core.crashreporting.printer.LogPrinter
 import com.rocket.core.domain.di.CoreProvider
 
 @Suppress("unused")
 class CoreCrashProvider private constructor() : CoreProvider() {
 
+    val logPrinter: LogPrinter by lazy {
+        DefaultLogPrinter()
+    }
+
     val crashLogger: CrashLogger by lazy {
         DefaultLogger(
             debuggable = getPropertyOrNull<Boolean>(CoreProviderProperty.PRINT_LOGS) ?: false,
-            printer = DefaultLogPrinter()
+            printer = logPrinter
         )
     }
 
     companion object {
-
         @Suppress("ObjectPropertyName")
         private lateinit var _instance: CoreCrashProvider
 
