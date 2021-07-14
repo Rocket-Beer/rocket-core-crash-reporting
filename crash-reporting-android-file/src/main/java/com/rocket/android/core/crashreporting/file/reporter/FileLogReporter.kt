@@ -7,7 +7,7 @@ import com.rocket.core.crashreporting.printer.LogPrinter
 import com.rocket.core.domain.di.CoreProvider.CoreProviderProperty
 
 @Suppress("UnusedPrivateMember")
-class FileLogReporter private constructor(application: Application) {
+class FileLogReporter private constructor(private val application: Application) {
     private val debuggable: Boolean
     private val fileLogPrinter: LogPrinter
 
@@ -17,25 +17,38 @@ class FileLogReporter private constructor(application: Application) {
             fileLogPrinter = logPrinter
         }
 
+        registerMainThreadExceptionHandler()
+        registerBackgroundThreadExceptionHandler()
+    }
+
+    private fun registerMainThreadExceptionHandler() {
         application.mainLooper.thread.setUncaughtExceptionHandler { thread, throwable ->
             if (debuggable) {
                 fileLogPrinter.printMessage(
-                    "FileLogReporter setUncaughtExceptionHandler",
+                    "FileLogReporter ${thread.name}",
                     throwable.stackTraceToString(),
                     logLevel = LogLevel.ERROR
                 )
             }
+            finishApplication()
         }
+    }
 
+    private fun registerBackgroundThreadExceptionHandler() {
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             if (debuggable) {
                 fileLogPrinter.printMessage(
-                    "FileLogReporter setDefaultUncaughtExceptionHandler",
-                    throwable.localizedMessage ?: "",
+                    "FileLogReporter ${thread.name}",
+                    throwable.stackTraceToString(),
                     logLevel = LogLevel.ERROR
                 )
             }
+            finishApplication()
         }
+    }
+
+    private fun finishApplication() {
+        android.os.Process.killProcess(android.os.Process.myPid())
     }
 
     companion object {
