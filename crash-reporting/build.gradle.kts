@@ -11,7 +11,7 @@ java {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
 
-    api("com.rocket.core:core-domain:0.0.3-alpha")
+    api("com.rocket.core:core-domain:0.0.3-alpha2")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.1.3")
