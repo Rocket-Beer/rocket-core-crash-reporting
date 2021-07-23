@@ -4,7 +4,6 @@ import LogFormat.currentDateFormat
 import LogFormat.currentDateTimeFormat
 import android.app.Application
 import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import com.rocket.android.core.crashreporting.file.appendLn
 import com.rocket.android.core.crashreporting.file.createFileIfNotExists
@@ -60,7 +59,7 @@ class FileLogPrinter(private val application: Application, dispatcher: Coroutine
 
     private fun getLogFile(path: String, filename: String): File {
         val dir = getDocumentsDirectory(path)
-        val file =  File("${dir.absolutePath}/$filename").apply {
+        val file = File("${dir.absolutePath}/$filename").apply {
             createFileIfNotExists()
         }
         return file

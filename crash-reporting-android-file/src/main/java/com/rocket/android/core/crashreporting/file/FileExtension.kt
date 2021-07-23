@@ -14,8 +14,7 @@ internal fun File.createFileIfNotExists() {
     if (!exists()) {
         try {
             createNewFile()
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             Log.e("createFileIfNotExists", e.message.toString())
         }
     }
