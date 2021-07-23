@@ -2,7 +2,7 @@ package com.rocket.android.core.crashreporting.file
 
 import android.util.Log
 import java.io.File
-import java.lang.Exception
+import java.io.IOException
 import java.nio.charset.Charset
 
 internal suspend fun File.appendLn(message: String, charset: Charset = Charsets.UTF_8) {
@@ -15,7 +15,7 @@ internal fun File.createFileIfNotExists() {
         try {
             createNewFile()
         }
-        catch (e: Exception) {
+        catch (e: IOException) {
             Log.e("createFileIfNotExists", e.message.toString())
         }
     }
