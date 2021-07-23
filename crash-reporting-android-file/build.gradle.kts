@@ -44,9 +44,9 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
 
-    implementation("com.rocket.core:core-domain:0.0.3-alpha2")
-    implementation("com.rocket.core:crash-reporting:0.0.3-alpha3")
-    implementation("com.rocket.android.core:crash-reporting-android:0.0.3-alpha4")
+    implementation("com.rocket.core:core-domain:0.0.3-alpha3")
+    implementation("com.rocket.core:crash-reporting:0.0.3-alpha4")
+    implementation("com.rocket.android.core:crash-reporting-android:0.0.3-alpha5")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.1.3")
