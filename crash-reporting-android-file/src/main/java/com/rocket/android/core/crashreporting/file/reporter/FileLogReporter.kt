@@ -5,6 +5,8 @@ import com.rocket.android.core.crashreporting.file.di.CoreAndroidFileCrashProvid
 import com.rocket.core.crashreporting.logger.LogLevel
 import com.rocket.core.crashreporting.printer.LogPrinter
 import com.rocket.core.domain.di.CoreProvider.CoreProviderProperty
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 @Suppress("UnusedPrivateMember")
 class FileLogReporter private constructor(private val application: Application) {
@@ -30,7 +32,6 @@ class FileLogReporter private constructor(private val application: Application) 
                     logLevel = LogLevel.ERROR
                 )
             }
-            finishApplication()
         }
     }
 
@@ -43,7 +44,6 @@ class FileLogReporter private constructor(private val application: Application) 
                     logLevel = LogLevel.ERROR
                 )
             }
-            finishApplication()
         }
     }
 
