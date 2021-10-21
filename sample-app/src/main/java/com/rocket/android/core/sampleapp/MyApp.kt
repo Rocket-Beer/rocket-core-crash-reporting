@@ -6,6 +6,7 @@ import com.rocket.core.domain.di.CoreProvider
 import com.rocket.core.domain.di.CoreProvider.CoreProviderProperty
 
 class MyApp : Application() {
+
     override fun onCreate() {
         super.onCreate()
         CoreProvider.properties = mapOf(

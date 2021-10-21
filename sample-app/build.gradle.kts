@@ -36,14 +36,15 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
     implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
 
-    implementation("com.rocket.core:core-domain:0.0.3-alpha2")
-    implementation("com.rocket.core:crash-reporting:0.0.3-alpha3")
-    implementation("com.rocket.android.core:crash-reporting-android-file:0.0.3-alpha4")
+    implementation("com.rocket.core:core-domain:0.0.3-alpha7")
+    implementation("com.rocket.core:crash-reporting:0.0.3-alpha6")
+    implementation(project(mapOf("path" to ":crash-reporting-android-file")))
+    //implementation("com.rocket.android.core:crash-reporting-android-file:0.0.3-alpha4")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
