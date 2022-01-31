@@ -21,7 +21,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      env:
-        PUBLISHER_USERNAME: ${{ secrets.PUBLISHER_USERNAME }}
-        PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+      env:        
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: ./gradlew build
