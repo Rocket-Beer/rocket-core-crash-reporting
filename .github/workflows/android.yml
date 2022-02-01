@@ -1,8 +1,6 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
 
@@ -11,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Clone Repo
     - uses: actions/checkout@v2
+    
     - name: set up JDK 11
       uses: actions/setup-java@v2
       with:
@@ -20,8 +20,28 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
+      
+    - name: Build Crash Reporting
       env:        
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: ./gradlew build
+      run: ./gradlew :crash-reporting:build
+      
+    - name: Build Crash Reporting Android
+      env:        
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew :crash-reporting-android:build
+      
+    - name: Build Crash Reporting Android File
+      env:        
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew :crash-reporting-android-file:build
+      
+    - name: Build Sample App
+      env:        
+        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew :sample-app:build
+      
