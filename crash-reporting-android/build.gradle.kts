@@ -39,8 +39,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
     implementation("androidx.core:core-ktx:1.6.0")
 
-    implementation("com.rocket.core:core-domain:0.0.3-alpha2")
-    api("com.rocket.core:crash-reporting:0.0.3-alpha3")
+    implementation("com.rocket.core:core-domain:0.0-beta0")
+    api("com.rocket.core:crash-reporting:0.0-beta0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.1.3")
