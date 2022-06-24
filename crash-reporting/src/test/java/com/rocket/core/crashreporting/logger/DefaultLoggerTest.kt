@@ -24,7 +24,7 @@ internal class DefaultLoggerTest {
     @ParameterizedTest(name = "crashlogger with debuggable {0} log messages {1}")
     @MethodSource("crashloggerDebuggableArgs")
     fun `crashlogger log messages`(debuggable: Boolean, expectedResult: Boolean) {
-        defaultCrashLogger = DefaultLogger(debuggable = debuggable, defaultLogPrinter)
+        defaultCrashLogger = DefaultLogger(debuggable = debuggable, printer = defaultLogPrinter)
 
         defaultCrashLogger.log(message = "message")
 
@@ -37,7 +37,7 @@ internal class DefaultLoggerTest {
     @ParameterizedTest(name = "crashlogger with debuggable {0} log exceptions {1}")
     @MethodSource("crashloggerDebuggableArgs")
     fun `crashlogger log exceptions`(debuggable: Boolean, expectedResult: Boolean) {
-        defaultCrashLogger = DefaultLogger(debuggable = debuggable, defaultLogPrinter)
+        defaultCrashLogger = DefaultLogger(debuggable = debuggable, printer = defaultLogPrinter)
 
         defaultCrashLogger.log(exception = Exception("exception message"))
 
