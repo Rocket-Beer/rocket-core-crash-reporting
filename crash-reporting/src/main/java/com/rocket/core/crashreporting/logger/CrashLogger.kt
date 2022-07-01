@@ -7,13 +7,13 @@ interface CrashLogger {
         exception: Throwable,
         map: Map<String, String?> = emptyMap(),
         logLevel: LogLevel = LogLevel.ERROR,
-        file: File? = null
+        logPath: File? = null
     )
 
     fun log(
         message: String,
         map: Map<String, String?> = emptyMap(),
         logLevel: LogLevel = LogLevel.DEBUG,
-        file: File? = null
+        logPath: File? = null
     )
 }

@@ -13,7 +13,7 @@ import java.util.Date
 class DefaultLogger(private val debuggable: Boolean = false, private val printer: LogPrinter) :
     CrashLogger {
 
-    override fun log(message: String, map: Map<String, String?>, logLevel: LogLevel, file: File?) {
+    override fun log(message: String, map: Map<String, String?>, logLevel: LogLevel, logPath: File?) {
         if (debuggable) {
             printer.printMessage(
                 tag = "DefaultLogger",
@@ -22,8 +22,8 @@ class DefaultLogger(private val debuggable: Boolean = false, private val printer
             )
         }
 
-        file?.let {
-            logToFile(file, logLevel, "$message - $map")
+        logPath?.let {
+            logToFile(logPath, logLevel, "$message - $map")
         }
     }
 
@@ -32,7 +32,7 @@ class DefaultLogger(private val debuggable: Boolean = false, private val printer
         exception: Throwable,
         map: Map<String, String?>,
         logLevel: LogLevel,
-        file: File?
+        logPath: File?
     ) {
         if (debuggable) {
             printer.printMessage(
@@ -42,22 +42,22 @@ class DefaultLogger(private val debuggable: Boolean = false, private val printer
             )
         }
 
-        file?.let {
-            logToFile(file, logLevel, "${exception.message} - $map")
+        logPath?.let {
+            logToFile(logPath, logLevel, "${exception.message} - $map")
         }
     }
 
     private fun logToFile(
-        file: File,
+        logPath: File,
         logLevel: LogLevel,
         logText: String
     ) {
-        val logFile = if (!file.isFile) {
+        val logFile = if (!logPath.isFile) {
             val currentDateTime: String =
                 SimpleDateFormat(currentDateTimeFormat, Locale.getDefault()).format(Date())
-            File(file.path + "/" + currentDateTime + ".log")
+            File(logPath.path + "/" + currentDateTime + ".log")
         } else {
-            file
+            logPath
         }
 
         if (!logFile.exists()) {
