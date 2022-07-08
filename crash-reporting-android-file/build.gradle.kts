@@ -46,7 +46,7 @@ dependencies {
 
     implementation("com.rocket.core:core-domain:0.0.3-alpha2")
     implementation("com.rocket.core:crash-reporting:0.0-beta0")
-    implementation("com.rocket.android.core:crash-reporting-android:0.0.3-alpha4")
+    implementation("com.rocket.android.core:crash-reporting-android:0.0-beta1-SNAPSHOT2022JULY08")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
     testImplementation("com.google.truth:truth:1.1.3")
