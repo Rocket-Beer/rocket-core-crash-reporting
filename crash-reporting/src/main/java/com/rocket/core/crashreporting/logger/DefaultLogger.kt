@@ -7,8 +7,8 @@ import java.io.File
 import java.io.FileWriter
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.Date
+import java.util.Locale
 
 class DefaultLogger(private val debuggable: Boolean = false, private val printer: LogPrinter) :
     CrashLogger {
@@ -26,7 +26,6 @@ class DefaultLogger(private val debuggable: Boolean = false, private val printer
             logToFile(logPath, logLevel, "$message - $map")
         }
     }
-
 
     override fun log(
         exception: Throwable,
