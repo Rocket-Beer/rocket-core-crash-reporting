@@ -30,7 +30,6 @@ class FileLogReporter private constructor(private val application: Application) 
                     logLevel = LogLevel.ERROR
                 )
             }
-            finishApplication()
         }
     }
 
@@ -43,7 +42,6 @@ class FileLogReporter private constructor(private val application: Application) 
                     logLevel = LogLevel.ERROR
                 )
             }
-            finishApplication()
         }
     }
 

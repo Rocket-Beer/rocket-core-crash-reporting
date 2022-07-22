@@ -8,7 +8,7 @@ android {
     buildToolsVersion("30.0.3")
 
     defaultConfig {
-        minSdkVersion(24)
+        minSdkVersion(21)
         targetSdkVersion(30)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -36,14 +36,18 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.20")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.21")
     implementation("androidx.core:core-ktx:1.6.0")
 
     implementation("com.rocket.core:core-domain:0.0-beta0")
     api("com.rocket.core:crash-reporting:0.0-beta0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testImplementation("com.google.truth:truth:1.1.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.5.20")
     testImplementation("io.mockk:mockk:1.12.0")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
