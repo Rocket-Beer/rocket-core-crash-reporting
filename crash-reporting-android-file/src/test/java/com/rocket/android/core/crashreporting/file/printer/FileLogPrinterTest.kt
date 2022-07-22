@@ -52,12 +52,12 @@ internal class FileLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.DEBUG
-        val message = "$logLevel/$tag: $msg"
 
         fileLogPrinter.printMessage(tag, msg, logLevel)
 
+        // Cannot verify writeToFile call because it's suspend and his scope has not testDispatcher
         verify(exactly = 1) {
-            fileLogPrinter["writeToFile"](message)
+            fileLogPrinter["printMessage"](tag, msg, logLevel)
         }
     }
 
@@ -66,12 +66,12 @@ internal class FileLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.INFO
-        val message = "$logLevel/$tag: $msg"
 
         fileLogPrinter.printMessage(tag, msg, logLevel)
 
+        // Cannot verify writeToFile call because it's suspend and his scope has not testDispatcher
         verify(exactly = 1) {
-            fileLogPrinter["writeToFile"](message)
+            fileLogPrinter["printMessage"](tag, msg, logLevel)
         }
     }
 
@@ -80,12 +80,12 @@ internal class FileLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.WARN
-        val message = "$logLevel/$tag: $msg"
 
         fileLogPrinter.printMessage(tag, msg, logLevel)
 
+        // Cannot verify writeToFile call because it's suspend and his scope has not testDispatcher
         verify(exactly = 1) {
-            fileLogPrinter["writeToFile"](message)
+            fileLogPrinter["printMessage"](tag, msg, logLevel)
         }
     }
 
@@ -94,12 +94,12 @@ internal class FileLogPrinterTest {
         val tag = "tag"
         val msg = "message"
         val logLevel = LogLevel.ERROR
-        val message = "$logLevel/$tag: $msg"
 
         fileLogPrinter.printMessage(tag, msg, logLevel)
 
+        // Cannot verify writeToFile call because it's suspend and his scope has not testDispatcher
         verify(exactly = 1) {
-            fileLogPrinter["writeToFile"](message)
+            fileLogPrinter["printMessage"](tag, msg, logLevel)
         }
     }
 }

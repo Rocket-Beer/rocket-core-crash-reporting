@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) : LogPrinter {
+class FileLogPrinter(private val application: Application, dispatcher: CoroutineDispatcher) : LogPrinter {
     private var scope =
         CoroutineScope(dispatcher + SupervisorJob())
 
@@ -44,7 +44,7 @@ class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) 
         }
     }
 
-    private fun writeToFile(message: String) {
+    private suspend fun writeToFile(message: String) {
         try {
             val currentDateTime: String =
                 SimpleDateFormat(currentDateTimeFormat, Locale.getDefault()).format(Date())
@@ -53,15 +53,16 @@ class FileLogPrinter(application: Application, dispatcher: CoroutineDispatcher) 
                 appendLn("$currentDateTime $message")
             }
         } catch (e: IOException) {
-            Log.e("FileLogPrinter", e.stackTrace.toString())
+            Log.e("FileLogPrinter", e.message.toString())
         }
     }
 
     private fun getLogFile(path: String, filename: String): File {
         val dir = getDocumentsDirectory(path)
-        return File("${dir.absolutePath}/$filename").apply {
+        val file = File("${dir.absolutePath}/$filename").apply {
             createFileIfNotExists()
         }
+        return file
     }
 
     private fun getDocumentsDirectory(path: String): File {
