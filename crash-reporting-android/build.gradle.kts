@@ -40,7 +40,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.6.0")
 
     implementation("com.rocket.core:core-domain:0.0.3-alpha6")
-    api("com.rocket.core:crash-reporting:0.0.3-alpha6")
+    api("com.rocket.core:crash-reporting:0.0-beta0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testImplementation("com.google.truth:truth:1.1.3")
