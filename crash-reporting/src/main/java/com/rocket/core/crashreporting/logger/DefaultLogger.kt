@@ -1,6 +1,6 @@
 package com.rocket.core.crashreporting.logger
 
-import LogFormat.currentDateTimeFormat
+import LogFormat.dateTimeFilenameFormat
 import com.rocket.core.crashreporting.printer.LogPrinter
 import java.io.BufferedWriter
 import java.io.File
@@ -31,7 +31,7 @@ class DefaultLogger(private val debuggable: Boolean = false, private val printer
         exception: Throwable,
         map: Map<String, String?>,
         logLevel: LogLevel,
-        logPath: File?
+        logPath: File?,
     ) {
         if (debuggable) {
             printer.printMessage(
@@ -49,11 +49,11 @@ class DefaultLogger(private val debuggable: Boolean = false, private val printer
     private fun logToFile(
         logPath: File,
         logLevel: LogLevel,
-        logText: String
+        logText: String,
     ) {
         val logFile = if (!logPath.isFile) {
             val currentDateTime: String =
-                SimpleDateFormat(currentDateTimeFormat, Locale.getDefault()).format(Date())
+                SimpleDateFormat(dateTimeFilenameFormat, Locale.getDefault()).format(Date())
             File(logPath.path + "/" + currentDateTime + ".log")
         } else {
             logPath
